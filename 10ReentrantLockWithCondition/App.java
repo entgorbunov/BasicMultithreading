@@ -1,4 +1,4 @@
-package com.balazsholczer.thread;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 class Worker {
 	
-	private Lock lock = new ReentrantLock();
+	private ReentrantLock lock = new ReentrantLock();
 	private Condition condition = lock.newCondition();
 	//private List<Integer> list = new ArrayList<>();
 	

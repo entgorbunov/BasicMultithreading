@@ -1,8 +1,9 @@
-package com.balazsholczer.udemy;
+
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.stream.IntStream;
 
 /**
  * 
@@ -48,14 +49,8 @@ public class App {
 	public static void main(String[] args) {
 
 		ExecutorService executorService = Executors.newCachedThreadPool();
-		
-		for(int i=0;i<12;i++) {
-			executorService.execute(new Runnable() {
-				public void run() {
-					Downloader.INSTANCE.downloadData();
-				}
-			});
-		}
+
+        IntStream.range(0, 12).<Runnable>mapToObj(i -> Downloader.INSTANCE::downloadData).forEach(executorService::execute);
 		
 	}
 }
